@@ -29,11 +29,11 @@
 
 ### 2. 软件依赖
 - Windows 10/11，PowerShell 5.1（系统自带，无需安装）
-- `mfkey32v2.exe` — 放在本脚本同目录（嗅探功能 [6] 需要；其余功能不需要）
-- `libnfc.db` 字典文件 — 默认查找 `D:\soft\PCR532\nfc-bin\libnfc.db`，不存在则找脚本同目录（字典攻击 [3] 需要；其余功能不需要）
+- `mfkey32v2.exe`（mfkey32 破解器，功能 [6] 用）— **仓库已附带**
+- `libnfc.db` 密钥字典 67 万键（功能 [3] 用）— **仓库已附带**，脚本会自动在脚本同目录找到它
 
 ### 3. 运行
-1. 下载本仓库 `cu-tool.ps1`（连同 `mfkey32v2.exe` 放同一目录）
+1. 下载本仓库全部文件（`Code → Download ZIP` 或 `git clone`，五个文件放同一目录）
 2. 右键 `cu-tool.ps1` → **使用 PowerShell 运行**
 3. 若被执行策略拦截，用**管理员 PowerShell** 执行一次：
    ```powershell
@@ -103,8 +103,8 @@
 
 ```
 cu-tool.ps1           主脚本（唯一必需）
-mfkey32v2.exe         mfkey32 破解器（功能[6]用）
-libnfc.db             密钥字典（功能[3]用，可选路径）
+mfkey32v2.exe         mfkey32 破解器（功能[6]用，仓库附带）
+libnfc.db             密钥字典 67万键（功能[3]用，仓库附带）
 nfc-data/             运行产出（自动创建）
   ├─ dump_时间戳.txt     全卡 dump
   ├─ bf_pos_s<N>.txt     字典攻击断点
