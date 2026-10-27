@@ -1,0 +1,21 @@
+# 变色龙一体工具使用说明
+
+## 安装（已在 pc4 完成，换电脑时照做）
+1. 把整个 `D:\soft\PCR532\` 目录拷走（必须含 cu-tool.ps1、mfkey32v2.exe）
+2. 需要字典攻击时额外要 libnfc.db（默认路径 D:\soft\PCR532\nfc-bin\libnfc.db，也可放工具同目录）
+3. 右键 cu-tool.ps1 -> 使用 PowerShell 运行（若被策略拦截：管理员 PowerShell 执行
+   `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned`）
+
+## 功能
+[1] 扫卡        显示 UID/卡型
+[2] 全卡 dump   自动试16把常见钥，60秒内出结果；破不出的扇区会提示
+[3] 密钥攻击    对指定扇区跑67万条字典，断点续跑（Ctrl+C中断安全，进度在 nfc-data\bf_pos_s*.txt）
+[4] 写卡槽模拟  把 dump 写进变色龙卡槽并切模拟模式（拿去贴读卡器模拟）
+[5] 模式切换    模拟/读卡模式 + 激活卡槽
+[6] 嗅探破解    变色龙当模拟卡放门禁上让真读卡器刷，抓认证数据后 mfkey32 自动破密钥
+
+## 注意
+- dump 不完整时 [4] 会拒绝写入并警告（防覆盖真卡数据），确认输入 y 才继续
+- 所有产出自动存 nfc-data\ 目录（dump_时间戳.txt、sniff_时间戳.txt、cracked_keys.txt）
+- 卡槽8 之前已写入饮水机卡镜像（UID BFF08E5E），[5] 可切回
+- 若提示"访问被拒绝"：拔插 CU 后重开工具；若还锁，关掉其他占串口的程序
